@@ -149,7 +149,8 @@ const book = getBook(2);
 // const title = book.title
 // const author = book.author
 
-const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
 
 console.log(title, author, genres);
 
@@ -161,20 +162,27 @@ console.log(primaryGenre, secondaryGenre);
 
 // 02 Rest Spread operator
 const [primaryGenre1, ...otherGenres] = genres;
-console.log(primaryGenre1 , otherGenres);
+console.log(primaryGenre1, otherGenres);
 
 // const newGenres = [genres, 'epic fantasy']
-const newGenres = [...genres, 'epic fantasy']
-const newGenres2 = ['epic fantasy', ...genres]
+const newGenres = [...genres, "epic fantasy"];
+const newGenres2 = ["epic fantasy", ...genres];
 console.log(newGenres);
 console.log(newGenres2);
 
 // add new properties to object
 const book1 = getBook(1);
 // const updatedBook = {book1, moviePublicationDate: "2002-12-16"}
-const updatedBook = {...book1,
+const updatedBook = {
+  ...book1,
   // Adding new property
   moviePublicationDate: "2002-12-16",
   // Overwriting an existing property  note: should spread the object first
-  pages:840}
-updatedBook
+  pages: 840,
+};
+console.log(updatedBook);
+
+//  03 Template Literals
+
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]}`;
+console.log(summary);
