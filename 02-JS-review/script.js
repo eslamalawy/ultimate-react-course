@@ -311,3 +311,25 @@ console.log(DescendingArrAvoid);
 // descending
 const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
 console.log(sortedByPages);
+
+// 12 Working With Immutable Arrays
+
+//1) add book object to array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "j. k. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+//2) delete book object from array
+// it will return all books except that book which has id equal to 3
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+console.log(booksAfterDelete);
+
+// 3) Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1 } : book
+);
+console.log(booksAfterUpdate);
