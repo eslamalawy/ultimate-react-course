@@ -172,6 +172,7 @@ console.log(newGenres2);
 
 // add new properties to object
 const book1 = getBook(1);
+const book2 = getBook(2);
 // const updatedBook = {book1, moviePublicationDate: "2002-12-16"}
 const updatedBook = {
   ...book1,
@@ -201,3 +202,48 @@ console.log(pagesRange);
 const getYear = (str) => str.split("-")[0];
 
 console.log(getYear(publicationDate));
+
+// 06 Short Circuiting And Logical Operators
+console.log(true && "some string");
+console.log(false && "some string");
+console.log(hasMovieAdaptation && "This book has a movie.");
+
+// && it return the last value if all true
+// falsy: 0, '', null, undefined
+console.log('jonas' && 'some string');
+console.log(0 && 'some string');
+
+// || if the first is true it return it without looking to the sencod value
+console.log(true || "some str");
+console.log(false || "some str");
+
+console.log(book2.translations.spanish);
+
+const spanishTranslation = book1.translations.spanish || "NOT TRANSLATED"
+console.log(spanishTranslation);
+
+console.log(book2.reviews.librarything.reviewsCount);
+const countingWrong = book2.reviews.librarything.reviewsCount || 'no data'
+console.log(countingWrong);
+
+// Nullish Coalescing Operator
+// it does also short circut for falsy values like ||
+// it will only return the second value when the first value is null or undefined
+const count = book2.reviews.librarything.reviewsCount ?? 'no data'
+console.log(count);
+// null case
+let fakeReviewsCount = null
+let countForFake = fakeReviewsCount ?? 'no data'
+console.log(countForFake);
+// undefined case
+fakeReviewsCount = undefined
+countForFake = fakeReviewsCount ?? 'no data'
+console.log(countForFake);
+// 0 case
+fakeReviewsCount = 0
+countForFake = fakeReviewsCount ?? 'no data'
+console.log(countForFake);
+// value case
+fakeReviewsCount = 837
+countForFake = fakeReviewsCount ?? 'no data'
+console.log(countForFake);
