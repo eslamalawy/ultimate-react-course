@@ -259,3 +259,18 @@ function getTotalReviewCount(book) {
 
 console.log(getTotalReviewCount(book3));
 
+// 08 The Array map Method
+const books = getBooks();
+
+const doubledarray = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(doubledarray);
+
+const titles = books.map((book) => book.title);
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCount(book),
+}));
+console.log(essentialData);
+
