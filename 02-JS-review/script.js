@@ -158,3 +158,23 @@ console.log(title, author, genres);
 
 const [primaryGenre, secondaryGenre] = genres;
 console.log(primaryGenre, secondaryGenre);
+
+// 02 Rest Spread operator
+const [primaryGenre1, ...otherGenres] = genres;
+console.log(primaryGenre1 , otherGenres);
+
+// const newGenres = [genres, 'epic fantasy']
+const newGenres = [...genres, 'epic fantasy']
+const newGenres2 = ['epic fantasy', ...genres]
+console.log(newGenres);
+console.log(newGenres2);
+
+// add new properties to object
+const book1 = getBook(1);
+// const updatedBook = {book1, moviePublicationDate: "2002-12-16"}
+const updatedBook = {...book1,
+  // Adding new property
+  moviePublicationDate: "2002-12-16",
+  // Overwriting an existing property  note: should spread the object first
+  pages:840}
+updatedBook
