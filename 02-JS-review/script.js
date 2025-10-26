@@ -285,7 +285,11 @@ const longMovieBooks = books
   .filter((book) => book.hasMovieAdaptation);
 console.log(longMovieBooks);
 
-const adventureBooks = books.filter((book) =>
-  book.genres.includes("adventure")
-).map(book=> book.title)
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
 console.log(adventureBooks);
+
+// 10 The Array reduce Method
+const allBooksPages = books.reduce((sum, book) => sum + book.pages, 0);
+console.log(allBooksPages);
