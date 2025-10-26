@@ -333,3 +333,10 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1 } : book
 );
 console.log(booksAfterUpdate);
+
+// 013 Asynchronous JavaScript Promises
+promise = fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+console.log(promise);
+console.log("simple");
