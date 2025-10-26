@@ -184,5 +184,11 @@ console.log(updatedBook);
 
 //  03 Template Literals
 
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]}`;
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
+  publicationDate.split("-")[0]
+}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary);
+
+// 04 Ternaries Instead of if/else Statements
+const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
+console.log(pagesRange);
