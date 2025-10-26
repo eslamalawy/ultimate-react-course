@@ -7,16 +7,25 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(true);
 
   const prevCallback = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   };
   const nextCallback = () => {
-    if (step < 3) setStep(step + 1);
+    // if (step < 3) setStep(step + 1);
+    if (step < 3) {
+      // setStep(step + 1);
+      // setStep(step + 1);
+      // the above will not update the state twice- instead just once
+      // to solve that you should set by call back function [works]
+      // setStep((s)=> s + 1)
+      setStep((s) => s + 1);
+      // use this approach when you will depend on your last value of state
+    }
     // BAD PRACTICE
     // step +=1
   };
 
   const closeCallback = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((is) => !is);
   };
   return (
     <>
