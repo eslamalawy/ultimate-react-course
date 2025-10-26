@@ -293,3 +293,21 @@ console.log(adventureBooks);
 // 10 The Array reduce Method
 const allBooksPages = books.reduce((sum, book) => sum + book.pages, 0);
 console.log(allBooksPages);
+
+// 11 The Array sort Method  (MUTATE the original array)
+const AscendingArr = [3, 7, 1, 9, 6];
+const sorted = AscendingArr.sort((a, b) => a - b);
+console.log(sorted);
+console.log(AscendingArr);
+
+const DescendingArr = [3, 7, 1, 9, 6];
+DescendingArr.sort((a, b) => b - a);
+console.log(DescendingArr);
+// avoid mutation
+const DescendingArrAvoid = [3, 7, 1, 9, 0, 6];
+const nArr = DescendingArrAvoid.slice().sort((a, b) => b - a);
+console.log(nArr);
+console.log(DescendingArrAvoid);
+// descending
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+console.log(sortedByPages);
