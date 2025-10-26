@@ -58,7 +58,7 @@ function App() {
 }
 
 function Header() {
-//   const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  //   const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
   return (
     <header className="header">
       <h1 style={{}}>Fast React Pizza Co.</h1>
@@ -66,35 +66,22 @@ function Header() {
   );
 }
 function Menu() {
+  const pizzas = pizzaData;
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {
-            pizzaData.map((pizza)=>{
-                return <Pizza  key={pizza.name} pizzaObj={pizza}/>
-            })
-        }
-      </ul>
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="tomato, mozarella, spinach"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-       <Pizza
-        name="Pizza funghi"
-        ingredients="tomato, mushrooms"
-        photoName="pizzas/funghi.jpg"
-        price={15}
-      /> */}
+      {pizzas.length > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => {
+            return <Pizza key={pizza.name} pizzaObj={pizza} />;
+          })}
+        </ul>
+      )}
     </main>
   );
 }
 
 function Pizza(props) {
-//   console.log(props);
-  // {name,ingredients,photoName,price } = props;
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.ingredients} />
@@ -112,11 +99,19 @@ function Footer() {
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
-  //   if(hour >= openHour && hour <= closeHour) alert("we'are currently open!");
-  //   else alert("sorry we are closed")
 
-  return <footer className="footer">{hour}. We're currently open</footer>;
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open untill {closeHour}:00. Come visit us or order online.
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
+  );
   //   return React.createElement("footer",null,"We're currently open");
 }
 
