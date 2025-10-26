@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const messages = ["Learn React", "Apply for jobs", "Invest your new income"];
-
+const messages = [
+  "Learn React ⚛️",
+  "Apply for jobs 💼",
+  "Invest your new income 🤑",
+];
 export default function App() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
