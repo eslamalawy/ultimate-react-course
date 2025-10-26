@@ -337,6 +337,17 @@ console.log(booksAfterUpdate);
 // 013 Asynchronous JavaScript Promises
 promise = fetch("https://jsonplaceholder.typicode.com/todos")
   .then((res) => res.json())
-  .then((data) => console.log(data));
+  .then((data) => console.log("013", data));
 console.log(promise);
 console.log("simple");
+
+// 014 Asynchronous JavaScript AsyncAwait
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  return data;
+}
+
+const todos = await getTodos();
+console.log("todos:",todos);
+console.log("simpler");
