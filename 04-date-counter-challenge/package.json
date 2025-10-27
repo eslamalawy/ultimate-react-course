@@ -1,5 +1,5 @@
 {
-  "name": "date counter",
+  "name": "date_counter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
