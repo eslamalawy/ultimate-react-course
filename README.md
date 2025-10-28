@@ -11,3 +11,4 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 05-accordion-challenge: https://accordion-eslam.netlify.app/
 ### 05-tip-calculator-challenge: https://tip-calculator-eslam.netlify.app/
 ### 06-eat-and-split: https://eat-and-split-eslam.netlify.app/
+### 07-text-expander-challenge: https://text-expander-eslam.netlify.app/
