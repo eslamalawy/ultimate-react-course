@@ -68,9 +68,7 @@ function NumResults({ movies }) {
   );
 }
 // Statefull Component
-function Search() {
-  const [query, setQuery] = useState("");
-
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -89,36 +87,61 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState("");
-  const query = "saqasd";
+  const [query, setQuery] = useState("");
+  /*
   useEffect(function () {
-    //  side effect code
-    async function fetchMovies() {
-      try {
-        setIsloading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-        );
-
-        if (!res.ok)
-          throw new Error("Something went wrong with fetching movies");
-        
-        const data = await res.json();
-      if(data.Response === "False") throw new Error(data.Error)
-        setMovies(data.Search);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsloading(false);
-      }
-    }
-    fetchMovies();
+    console.log("After initial render");
   }, []);
+  // Synchronized with everything
+  useEffect(function () {
+    console.log("After every render");
+  });
+  useEffect(
+    function () {
+      console.log("Synchronized with query state only!");
+    },
+    [query]
+  );
+  console.log("during render");
+  */
+  useEffect(
+    function () {
+      //  side effect code
+      async function fetchMovies() {
+        try {
+          setIsloading(true);
+          setError("");
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          );
+
+          if (!res.ok)
+            throw new Error("Something went wrong with fetching movies");
+
+          const data = await res.json();
+          if (data.Response === "False") throw new Error(data.Error);
+          setMovies(data.Search);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsloading(false);
+        }
+      }
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+      fetchMovies();
+    },
+    [query]
+  );
   // on mount [] very first time
 
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
       <Main>
