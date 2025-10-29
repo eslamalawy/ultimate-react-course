@@ -98,3 +98,7 @@ function DifferentContent() {
     </div>
   );
 }
+// Component Instance
+console.log(<DifferentContent test={2} />);
+// Raw Output Element
+console.log(DifferentContent());
