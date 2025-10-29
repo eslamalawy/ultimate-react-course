@@ -233,9 +233,21 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   // /* eslint-disable */
   // this breaks the rule 1
-  // if (imdbRating > 8) [isTop, setisTop] = useState(true);
+  // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
   // if (imdbRating > 2) return <p>some text before useEffect</p>
 
+  // REMEMBER: The intial value in useState(initial value) is only been looked at by React in the very beginning. So only on component mount
+  // // the intial component mount this false value will stay forever unless we update it
+  // // so this part imdbRating > 8 will not executed again
+  // const [isTop, setIsTop] = useState(imdbRating > 8);
+  // console.log(isTop);
+  // // so we can use useEffect to update this isTop
+  // useEffect(function () {
+  //   setIsTop(imdbRating > 8)
+  // }, [imdbRating]);
+  // // if this is the case we can use derived state
+  const isTop = imdbRating > 8;
+  console.log(isTop);
   useEffect(
     function () {
       async function getMovieDetails() {
@@ -282,6 +294,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     [onCloseMovie]
   );
 
+  // const [avgRating, setAvgRating] = useState(0);
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -295,6 +308,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
     onAddWatched(newWatchedMovie);
     onCloseMovie();
+    // setAvgRating(Number(imdbRating));
+    // setAvgRating((avgRating) => (avgRating + userRating) / 2);
+    // alert(avgRating);
   }
   return (
     <div className="details">
@@ -319,6 +335,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
               </p>
             </div>
           </header>
+          {/* <p>{avgRating}</p> */}
           <section>
             <div className="rating">
               {!isWatched ? (
