@@ -88,7 +88,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("inception");
   const [selectedId, setSelectedId] = useState(null);
   /*
   useEffect(function () {
@@ -282,6 +282,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Actors: actors,
     Director: director,
     Genre: genre,
+    Type: type,
   } = movie;
   useEffect(
     function () {
@@ -298,6 +299,14 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       getMovieDetails();
     },
     [selectedId]
+  );
+
+  useEffect(
+    function () {
+      if (!title || !type) return;
+      document.title = `${type.toUpperCase()} | ${title}`;
+    },
+    [type, title]
   );
 
   function handleAdd() {
