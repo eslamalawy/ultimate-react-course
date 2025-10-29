@@ -88,7 +88,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   /*
   useEffect(function () {
@@ -154,6 +154,7 @@ export default function App() {
         setError("");
         return;
       }
+      handleCloseMovie();
       fetchMovies();
 
       return function () {
@@ -163,7 +164,6 @@ export default function App() {
     [query]
   );
   // on mount [] very first time
-
   return (
     <>
       <NavBar>
@@ -316,10 +316,27 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       document.title = `${type.toUpperCase()} | ${title}`;
       return function () {
         document.title = "usePopcorn Prepare Watching Your Lovely Movie!";
-        console.log(`Clean up effect for ${type.toUpperCase()} | ${title}`);
+        // it here remember the values because of JS closures even if the componant instance removed...
+        // console.log(`Clean up effect for ${type.toUpperCase()} | ${title} `);
       };
     },
     [type, title]
+  );
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+          // console.log("Closing");
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
   );
 
   function handleAdd() {
