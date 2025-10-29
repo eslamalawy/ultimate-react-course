@@ -15,3 +15,4 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 07-usepopcorn: https://usepopcorn-eslam.netlify.app/
 ### 08-currency-converter-challenge: https://currency-converter-eslam.netlify.app/
 ### 08-how-react-works: https://react-tabs-eslam.netlify.app/
+### 08-useGeolocation-challenge: https://usegeolocation.netlify.app/
