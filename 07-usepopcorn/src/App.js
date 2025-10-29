@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
+import { useMovies } from "./useMovies";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -59,11 +60,10 @@ function Search({ query, setQuery }) {
 const KEY = "76a362a6";
 // Structural Component
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
-  const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+  const { movies, isLoading, error } = useMovies(query);
+
   // const [watched, setWatched] = useState([]);
   // React will call this callback function and get its returned value as the initial state of this watched, and it must accept no params (pure function)
   const [watched, setWatched] = useState(function () {
@@ -92,48 +92,7 @@ export default function App() {
     },
     [watched]
   );
-  useEffect(
-    function () {
-      const controller = new AbortController();
-      //  side effect code
-      async function fetchMovies() {
-        try {
-          setIsloading(true);
-          setError("");
-          const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-            { signal: controller.signal }
-          );
 
-          if (!res.ok)
-            throw new Error("Something went wrong with fetching movies");
-
-          const data = await res.json();
-          if (data.Response === "False") throw new Error(data.Error);
-          setMovies(data.Search);
-          setError("");
-        } catch (err) {
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } finally {
-          setIsloading(false);
-        }
-      }
-      if (query.length < 3) {
-        setMovies([]);
-        setError("");
-        return;
-      }
-      handleCloseMovie();
-      fetchMovies();
-
-      return function () {
-        controller.abort();
-      };
-    },
-    [query]
-  );
   // on mount [] very first time
   return (
     <>
