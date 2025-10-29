@@ -305,6 +305,10 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     function () {
       if (!title || !type) return;
       document.title = `${type.toUpperCase()} | ${title}`;
+      return function () {
+        document.title = "usePopcorn Prepare Watching Your Lovely Movie!";
+        console.log(`Clean up effect for ${type.toUpperCase()} | ${title}`);
+      };
     },
     [type, title]
   );
