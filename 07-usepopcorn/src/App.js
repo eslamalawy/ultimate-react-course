@@ -23,6 +23,12 @@ function NumResults({ movies }) {
 }
 // Statefull Component
 function Search({ query, setQuery }) {
+  useEffect(function () {
+    const el = document.querySelector(".search");
+    console.log(el);
+    el.focus();
+  }, []);
+  
   return (
     <input
       className="search"
@@ -257,9 +263,11 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   // useEffect(function () {
   //   setIsTop(imdbRating > 8)
   // }, [imdbRating]);
+
   // // if this is the case we can use derived state
-  const isTop = imdbRating > 8;
-  console.log(isTop);
+  // const isTop = imdbRating > 8;
+  // console.log(isTop);
+
   useEffect(
     function () {
       async function getMovieDetails() {
