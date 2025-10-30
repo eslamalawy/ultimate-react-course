@@ -32,8 +32,6 @@ function formatDay(dateStr) {
   }).format(new Date(dateStr));
 }
 
-async function getWeather(location) {}
-
 class App extends React.Component {
   state = {
     location: "",
