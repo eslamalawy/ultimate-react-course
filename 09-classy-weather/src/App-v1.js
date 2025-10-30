@@ -35,23 +35,18 @@ function formatDay(dateStr) {
 async function getWeather(location) {}
 
 class App extends React.Component {
-  state = {
-    location: "lisbon",
-    isLoading: false,
-    displayLocation: "",
-    weather: {},
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: "lisbon",
+      isLoading: false,
+      displayLocation: "",
+      weather: {},
+    };
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
 
-  // constructor(props) {
-    // super(props);
-
-    // this.fetchWeather = this.fetchWeather.bind(this);
-  // }
-  // async fetchWeather() {...} replaced with arrow function why?
-
-    // Arrow function don't lose their binding to the "this" keywoard
-    // Arrow functions don't have their own "this" keyword And instead they get access to the surrounding one
-  fetchWeather = async () => {
+  async fetchWeather() {
     try {
       this.setState({ isLoading: true });
       // 1) Getting location (geocoding)
@@ -80,7 +75,7 @@ class App extends React.Component {
     } finally {
       this.setState({ isLoading: false });
     }
-  };
+  }
 
   render() {
     return (
