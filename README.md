@@ -19,3 +19,4 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 09-classy-weather: https://classy-weather-eslam.netlify.app/
 ### 10-react-quiz: https://date-counter-usereducer.netlify.app/
 ### 10-react-quiz: https://react-quiz-eslam.netlify.app/
+### 10-usereduce-bank-challenge: https://usereducer-bank.netlify.app/
