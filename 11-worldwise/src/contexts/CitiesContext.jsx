@@ -138,5 +138,5 @@ function useCities() {
     throw new Error("CitiesContext was used ourside the CitiesProvider");
   return context;
 }
-
+// eslint-disable-next-line react-refresh/only-export-components
 export { CitiesProvider, useCities };
