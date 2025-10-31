@@ -35,54 +35,6 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
-    },
-    {
-      "id": "7d6e",
-      "cityName": "Amadora",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2025-10-31T20:41:20.778Z",
-      "notes": "this is the test amadora !",
-      "position": {
-        "lat": "38.751271984314904",
-        "lng": "-9.23229217529297"
-      }
-    },
-    {
-      "id": "738e",
-      "cityName": "Castello de la Plana",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2025-10-31T20:44:26.007Z",
-      "notes": "that was awesome test~!",
-      "position": {
-        "lat": "40.06562489948275",
-        "lng": "-0.005793571472167969"
-      }
-    },
-    {
-      "id": "42bb",
-      "cityName": "Vilafames",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2025-10-31T20:45:56.307Z",
-      "notes": "bad place!",
-      "position": {
-        "lat": "40.12552140503837",
-        "lng": "-0.11115074157714845"
-      }
-    },
-    {
-      "id": "7119",
-      "cityName": "Lucena del Cid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2025-10-31T20:50:59.260Z",
-      "notes": "why this place is !",
-      "position": {
-        "lat": "40.144206721891834",
-        "lng": "-0.1984405517578125"
-      }
     }
   ]
 }
