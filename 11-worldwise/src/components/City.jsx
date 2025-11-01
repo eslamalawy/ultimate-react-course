@@ -21,8 +21,15 @@ function City() {
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
   );
+
+  // if we added getCity in the dependency array it will cause infinte loop
+  // as the function change the state of currentCity in the cities context
+  // and also there the function re created! so it will again reset the state of currentCity and recreated and reset and....
+  // so in order to improve this we can: useCallback for it
+  // and now after using the useCallback on it so we can put it in the dependency array of useEffect
+
   const { cityName, emoji, date, notes } = currentCity;
   if (isLoading) return <Spinner />;
   return (
