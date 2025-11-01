@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -25,9 +25,19 @@ function App() {
         )
       : posts;
 
-  function handleAddPost(post) {
+  const handleAddPost = useCallback(function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
-  }
+    // console.log(posts);
+  }, []);
+  // the memoization still works even if i passed  setIsFakeDark={setIsFakeDark} why it still works?
+  // Well, basically React guarantees that the setter functions of the use state hook always have a stable identity
+  // which means that they will not change on renders.
+  // so We can basically think of these state setter functions as being automatically memoized.
+  // And in fact, this is also the reason why it's completely okay to omit them from the dependency array of all these hooks,
+  // so from useEffect, useCallback, and useMemo.
+  // as you see in the code above esLint don't complain not including the setPosts to the dependency array
+  // but try to  console.log(posts) >> it will complain
+//   SO AGAIN with the state setter functions that's not necessary, And that's true for all the dependency arrays and all the three hooks that have them.
 
   function handleClearPosts() {
     setPosts([]);
@@ -40,12 +50,15 @@ function App() {
     },
     [isFakeDark]
   );
-  const archiveOptions = useMemo(function () {
-    return {
-      show: false,
-      title: `Post archive in addition to ${posts.length} main posts`,
-    };
-  }, [posts.length]);
+  const archiveOptions = useMemo(
+    function () {
+      return {
+        show: false,
+        title: `Post archive in addition to ${posts.length} main posts`,
+      };
+    },
+    [posts.length]
+  );
   // empty array [] means this value will only be computed once in the beginning and then never changes, so it will never be recomputed
   // if we passed posts.length not only posts to dependency array it will recompute it once the posts changes
   return (
@@ -64,7 +77,11 @@ function App() {
         setSearchQuery={setSearchQuery}
       />
       <Main posts={searchedPosts} onAddPost={handleAddPost} />
-      <Archive archiveOptions={archiveOptions} />
+      <Archive
+        archiveOptions={archiveOptions}
+        onAddPost={handleAddPost}
+        setIsFakeDark={setIsFakeDark}
+      />
       <Footer />
     </section>
   );
@@ -160,7 +177,7 @@ function List({ posts }) {
     </ul>
   );
 }
-const Archive = memo(function Archive({ archiveOptions }) {
+const Archive = memo(function Archive({ archiveOptions, onAddPost }) {
   // Here we don't need the setter function. We're only using state to store these posts because the callback function passed into useState (which generates the posts) is only called once, on the initial render. So we use this trick as an optimization technique, because if we just used a regular variable, these posts would be re-created on every render. We could also move the posts outside the components, but I wanted to show you this trick 😉
   const [posts] = useState(() =>
     // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
@@ -183,7 +200,7 @@ const Archive = memo(function Archive({ archiveOptions }) {
               <p>
                 <strong>{post.title}:</strong> {post.body}
               </p>
-              {/* <button onClick={() => onAddPost(post)}>Add as new post</button> */}
+              <button onClick={() => onAddPost(post)}>Add as new post</button>
             </li>
           ))}
         </ul>
