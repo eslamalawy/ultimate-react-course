@@ -1,5 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
+
+// WHEN TO OPTIMIZE CONTEXT
+// it's actually very important to understand that you only need to optimize your context in case that three things are true at the same time.
+// So first of all, the state in the context needs to change all the time.
+// Second, the context has many consumers
+// and third, and probably most importantly the app is actually slow and laggy.
+// So only if all of these are true it is time to optimize context.
 
 // 1) CREATE A CONTEXT
 const PostContext = createContext();
@@ -33,19 +40,18 @@ function PostProvider({ children }) {
     setPosts([]);
   }
 
+  const value = useMemo(() => {
+    return {
+      posts: searchedPosts,
+      onAddPost: handleAddPost,
+      onClearPosts: handleClearPosts,
+      searchQuery,
+      setSearchQuery,
+    };
+  }, [searchQuery, searchedPosts]);
   return (
     // 2) PROVIDE VALUE TO CHILD COMPONENTS
-    <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onAddPost: handleAddPost,
-        onClearPosts: handleClearPosts,
-        searchQuery,
-        setSearchQuery,
-      }}
-    >
-      {children}
-    </PostContext.Provider>
+    <PostContext.Provider value={value}>{children}</PostContext.Provider>
   );
 }
 
