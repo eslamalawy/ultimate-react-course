@@ -35,6 +35,30 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
+    },
+    {
+      "id": "ca22",
+      "cityName": "Velten",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2025-11-01T14:14:29.588Z",
+      "notes": "this is my favorite  willing visiting place",
+      "position": {
+        "lat": "52.68512401693659",
+        "lng": "13.175354003906252"
+      }
+    },
+    {
+      "id": "bb56",
+      "cityName": "Ushachskiy Rayon",
+      "country": "Belarus",
+      "emoji": "🇧🇾",
+      "date": "2025-11-01T14:15:14.057Z",
+      "notes": "Ushachskiy Rayon",
+      "position": {
+        "lat": "55.21335628339293",
+        "lng": "28.756713867187504"
+      }
     }
   ]
 }

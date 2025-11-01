@@ -20,4 +20,5 @@ these are the react projects i created with their demos in the ReadMe.md
 ### 10-react-quiz: https://date-counter-usereducer.netlify.app/
 ### 10-react-quiz: https://react-quiz-eslam.netlify.app/
 ### 10-usereduce-bank-challenge: https://usereducer-bank.netlify.app/
+### 11-worldwise: https://worldwise-alawy.netlify.app/
 ### 12-atomic-blog: https://context-blog.netlify.app/
