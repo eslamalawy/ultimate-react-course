@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import clickSound from "./ClickSound.m4a";
 
 function Calculator({ workouts, allowSound }) {
@@ -27,6 +27,18 @@ function Calculator({ workouts, allowSound }) {
     },
     [duration, allowSound]
   );
+
+  useEffect(
+    function () {
+      document.title = `Your ${number}-exercise workout`;
+    },
+    [number]
+  );
+  // NOTE ABOUT CLOSURE
+  // we added number to the dependency array so that
+  // so the stale closure only happens if the function is still referencing some old values that are outdated by the time while this function running
+  // so why we added it? to not refear to old stale CLOSURE value - instead it depend on new value
+
   // const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak;
   const mins = Math.floor(duration);
   const seconds = (duration - mins) * 60;
